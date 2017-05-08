@@ -15,20 +15,15 @@ public class BubbleSort implements ISort {
             return;
         }
 
-        if (input.length == 1) {
-            // TODO: don't need sort
-            return;
-        }
-
-        for (int i = 1; i < input.length; i++) {
+        for (int i = 0; i < input.length; i++) {
             int maxIndex = 0;
             int endIndex = input.length - i;
-            for (int j = 1; j <= endIndex; j++) {
+            for (int j = 1; j < endIndex; j++) {
                 if (input[j].compareTo(input[maxIndex]) > 0) {
                     maxIndex = j;
                 }
             }
-            Utils.swap(input, maxIndex, endIndex);
+            Utils.swap(input, maxIndex, endIndex-1);
         }
     }
 

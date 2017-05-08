@@ -18,11 +18,14 @@ public class MainActivity extends AppCompatActivity {
     private void sort() {
         Integer[] input = GenerateData.gen(10, 10);
         Integer[] input2 = input.clone();
-        Integer[] input3 = GenerateData.gen(13, 20);
+        Integer[] input3 = GenerateData.gen(15, 20);
+        Integer[] input4 = input3.clone();
+
         Utils.sort("com.stokey.algorithmdemo.Algorithm.basic.sort.InsertSort", input);
 
         Utils.sort("com.stokey.algorithmdemo.Algorithm.basic.sort.SelectionSort", input2);
 
         Utils.sort("com.stokey.algorithmdemo.Algorithm.BubbleSort", input3, true);
+        Utils.sort("com.stokey.algorithmdemo.Algorithm.ShellSort", input4);
     }
 }

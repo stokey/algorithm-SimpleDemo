@@ -27,13 +27,36 @@ public class Utils {
         return input;
     }
 
-    private static <T> void printF(String tag,T[] input,long startTime,long endTime,boolean printItem){
-        if (printItem) {
-            if (input != null && input.length > 0) {
-                for (int i = 0; i < input.length; i++) {
-                    System.out.println(tag + ":" + input[i]);
+    public static <T> void  printF(String tag,T[] input){
+        printF(tag,input,false);
+    }
+
+    public static <T> void  printF(String tag,T[] input,boolean newLine){
+        if (input != null && input.length > 0) {
+            String printStr="" ;
+            for (int i = 0; i < input.length; i++) {
+                if (newLine) {
+                    printStr = printStr + tag+": " + input[i]+"\n";
+                } else {
+                    if (i == 0){
+                        printStr = tag+": " + "[ "+input[i]+",";
+                    }
+
+                    if (i == input.length-1){
+                        printStr += input[i]+" ]";
+                    }
+
+                    if (i >0 && i < input.length-1){
+                        printStr += input[i]+",";
+                    }
                 }
             }
+            System.out.println(printStr);
+        }
+    }
+    private static <T> void printFCostTime(String tag,T[] input,long startTime,long endTime,boolean printItem){
+        if (printItem) {
+            printF(tag,input,true);
         }
         System.out.println(tag+": cost time = "+(endTime-startTime)+"ms");
     }
@@ -57,7 +80,7 @@ public class Utils {
                 temp.sort(input);
             }
             long endTime = new Date().getTime();
-            printF(className,input,startTime,endTime,print);
+            printFCostTime(className,input,startTime,endTime,print);
         } catch (Exception e) {
             System.out.println("Error:"+e.getMessage());
             e.printStackTrace();
