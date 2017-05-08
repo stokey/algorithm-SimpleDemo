@@ -25,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
 
         Utils.sort("com.stokey.algorithmdemo.Algorithm.basic.sort.SelectionSort", input2);
 
-        Utils.sort("com.stokey.algorithmdemo.Algorithm.BubbleSort", input3, true);
+        Utils.sort("com.stokey.algorithmdemo.Algorithm.BubbleSort", input3);
         Utils.sort("com.stokey.algorithmdemo.Algorithm.ShellSort", input4);
+
+
+        Integer[] input5 = GenerateData.gen(10,20);
+        Utils.printF("outMerge",input5);
+        Utils.sort("com.stokey.algorithmdemo.Algorithm.MergeSort",input5,true);
     }
 }
