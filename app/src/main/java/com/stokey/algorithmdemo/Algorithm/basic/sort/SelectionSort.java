@@ -9,12 +9,7 @@ import com.stokey.algorithmdemo.Algorithm.util.Utils;
 
 public class SelectionSort implements ISort {
 
-    private <T> void selectionSort(T[] input) {
-        if (input == null || input.length <= 0) {
-            // TODO: input error
-            return;
-        }
-
+    protected <T> void selectionSort(T[] input) {
         for (int i = 0; i < input.length; i++) {
             int minIndex = i;
             for (int j = i + 1; j < input.length; j++) {

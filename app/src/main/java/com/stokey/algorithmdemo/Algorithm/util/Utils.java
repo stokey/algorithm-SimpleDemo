@@ -70,6 +70,10 @@ public class Utils {
     }
 
     public static <T extends Comparable<? super T>> void sort(String className, T[] input,boolean print,boolean sortAdvance){
+        if (input == null || input.length <=0){
+            // TODO: input error
+            System.out.println("Error: input error");
+        }
         long startTime = new Date().getTime();
         try {
             Class<ISort> classTemp = (Class<ISort>) Class.forName(className);

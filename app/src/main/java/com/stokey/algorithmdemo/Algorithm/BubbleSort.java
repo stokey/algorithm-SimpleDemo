@@ -9,12 +9,7 @@ import com.stokey.algorithmdemo.Algorithm.util.Utils;
 
 public class BubbleSort implements ISort {
 
-    private <T extends Comparable<? super T>> void bubbelSort(T[] input) {
-        if (input == null || input.length <= 0) {
-            // TODO: input is error
-            return;
-        }
-
+    protected <T extends Comparable<? super T>> void bubbleSort(T[] input) {
         for (int i = 0; i < input.length; i++) {
             int maxIndex = 0;
             int endIndex = input.length - i;
@@ -30,7 +25,7 @@ public class BubbleSort implements ISort {
 
     @Override
     public <T extends Comparable<? super T>> void sort(T[] input) {
-        bubbelSort(input);
+        bubbleSort(input);
     }
 
     @Override

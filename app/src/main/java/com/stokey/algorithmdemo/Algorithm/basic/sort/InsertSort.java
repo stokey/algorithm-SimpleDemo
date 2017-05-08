@@ -9,7 +9,7 @@ import com.stokey.algorithmdemo.Algorithm.util.Utils;
 
 public class InsertSort implements ISort {
 
-    public static <T extends Comparable<? super T>> void insertSort(T[] input) {
+    protected static <T extends Comparable<? super T>> void insertSort(T[] input) {
         if (input == null || input.length <= 0) {
             // TODO:input error
             return;
@@ -31,11 +31,7 @@ public class InsertSort implements ISort {
         }
     }
 
-    public static <T extends Comparable<? super T>> void insertSortAdvance(T[] input) {
-        if (input == null || input.length <= 0) {
-            // TODO:input error
-            return;
-        }
+    protected static <T extends Comparable<? super T>> void insertSortAdvance(T[] input) {
         for (int i = 1; i < input.length; i++) {
             T temp = input[i];
             int j;
