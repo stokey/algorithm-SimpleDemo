@@ -32,5 +32,6 @@ public class MainActivity extends AppCompatActivity {
         Integer[] input5 = GenerateData.gen(10,20);
         Utils.printF("outMerge",input5);
         Utils.sort("com.stokey.algorithmdemo.Algorithm.MergeSort",input5,true);
+        Utils.sort("com.stokey.algorithmdemo.Algorithm.QuickSort",input5,true);
     }
 }

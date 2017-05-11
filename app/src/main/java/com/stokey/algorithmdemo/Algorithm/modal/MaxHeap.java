@@ -13,12 +13,32 @@ public class MaxHeap<T extends Comparable<? super T>> {
 
     /**
      * 构造最大堆（数组首位元素为空）
+     * O(nlogn)
      * @param capacity
      */
     public MaxHeap(int capacity) {
         data = (T[]) new Object[capacity + 1];
         this.capacity = capacity;
         count = 0;
+    }
+
+    /**
+     * 构造最大堆O(n)
+     * @param array
+     * @param n
+     */
+    public MaxHeap(T[] array, int n) {
+        this.data = (T[]) new Object[n + 1];
+        this.capacity = n;
+
+        for (int i = 0; i < n; i++) {
+            this.data[i + 1] = array[i];
+        }
+        count = n;
+
+        for (int k = count / 2; k >= 1; k--) {
+            shiftDown(k);
+        }
     }
 
     private void shiftUp(int k) {
@@ -37,6 +57,8 @@ public class MaxHeap<T extends Comparable<? super T>> {
             if (this.data[k].compareTo(this.data[j]) < 0) {
                 Utils.swap(this.data, k, j);
                 k = j;
+            } else {
+                break;
             }
         }
     }
