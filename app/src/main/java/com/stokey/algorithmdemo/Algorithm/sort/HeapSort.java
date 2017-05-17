@@ -1,4 +1,4 @@
-package com.stokey.algorithmdemo.Algorithm;
+package com.stokey.algorithmdemo.Algorithm.sort;
 
 import com.stokey.algorithmdemo.Algorithm.basic.ISort;
 import com.stokey.algorithmdemo.Algorithm.modal.MaxHeap;
