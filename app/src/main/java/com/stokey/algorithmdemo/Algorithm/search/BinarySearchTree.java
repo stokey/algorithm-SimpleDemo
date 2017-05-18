@@ -2,6 +2,8 @@ package com.stokey.algorithmdemo.Algorithm.search;
 
 import java.util.LinkedList;
 
+import static junit.framework.Assert.assertTrue;
+
 /**
  * Created by stokey on 2017/5/18.
  */
@@ -19,6 +21,13 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             this.value = value;
             this.left = null;
             this.right = null;
+        }
+
+        public Node(Node node){
+            this.key = node.key;
+            this.value = node.value;
+            this.left = node.left;
+            this.right = node.right;
         }
     }
 
@@ -166,7 +175,9 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             destroy(root.left);
             destroy(root.right);
             this.count--;
-            root = null;
+            root.left = root.right = null;
+            root.key = null;
+            root.value = null;
         }
     }
 
@@ -189,4 +200,120 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
         }
     }
 
+    /**
+     * 寻找最小节点
+     *
+     * @return
+     */
+    public Key minimum() {
+        assertTrue("minimum error", this.count <= 0);
+        return minimum(this.root).key;
+    }
+
+    private Node minimum(Node root) {
+        if (root.left == null) {
+            return root;
+        }
+        return minimum(root.left);
+    }
+
+    /**
+     * 寻找最大节点
+     *
+     * @return
+     */
+    public Key maximum() {
+        assertTrue("maximum error", this.count <= 0);
+        return maximum(this.root).key;
+    }
+
+    private Node maximum(Node root) {
+        if (root.right == null) {
+            return root;
+        }
+        return maximum(root.right);
+    }
+
+    /**
+     * 删除最小节点
+     *
+     * @return
+     */
+    public Node removeMin() {
+        return this.root == null ? null : removeMin(this.root);
+    }
+
+    private Node removeMin(Node root) {
+        if (root.left == null) {
+            Node right = root.right;
+            root.right = null;
+            this.count--;
+            return right;
+        }
+
+        root.left = removeMin(root.left);
+        return root;
+    }
+
+    /**
+     * 删除最大节点
+     *
+     * @return
+     */
+    public Node removeMax() {
+        return this.root == null ? null : removeMax(this.root);
+    }
+
+    private Node removeMax(Node root) {
+        if (root.right == null) {
+            Node left = root.left;
+            root.left = null;
+            this.count--;
+            return left;
+        }
+
+        root.right = removeMax(root.right);
+        return root;
+    }
+
+    /**
+     * 根据键值删除某一节点
+     * @param key
+     */
+    public void remove(Key key){
+        this.root = remove(this.root,key);
+    }
+
+    private Node remove(Node root, Key key) {
+        if (root == null){
+            return null;
+        }
+        if (root.key.compareTo(key)>0){
+            return remove(root.left,key);
+        } else if (root.key.compareTo(key)<0){
+            return remove(root.right,key);
+        } else {
+            if (root.left == null){
+                Node right = root.right;
+                root.right = null;
+                this.count--;
+                return right;
+            }
+            if (root.right == null){
+                Node left = root.left;
+                root.left = null;
+                this.count--;
+                return left;
+            }
+            // left/right都不为null
+            Node successor = new Node(minimum(root.right));
+            this.count++;
+
+            successor.right = removeMin(successor);
+            successor.left = root.left;
+            root.left = root.right = null;
+            this.count--;
+            return successor;
+        }
+    }
 }

@@ -14,11 +14,11 @@ public class ShellSort implements ISort {
         while (gap > 0) {
             // 将步长为gap的元素编为一个数组
             for (int i = gap; i < input.length; i++) {
-                int j;
+                int j = i - gap;
                 T temp = input[i];
-                for (j = i - gap; j >= 0 && input[j].compareTo(temp) > 0; j -= gap) {
-                    // 向后移位
-                    input[j + gap] = input[j];
+                for (; j >= 0 && input[j].compareTo(temp) > 0; j -= gap) {
+                    // 交换位置
+                    input[i] = input[j];
                 }
                 input[j + gap] = temp;
             }
