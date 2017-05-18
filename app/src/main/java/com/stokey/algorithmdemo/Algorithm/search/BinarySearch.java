@@ -7,6 +7,7 @@ import com.stokey.algorithmdemo.Algorithm.basic.ISearch;
  */
 
 public class BinarySearch implements ISearch<Integer> {
+    // 满足定义leftNode< node; node > rightNode
 
     @Override
     public int search(Integer[] input, Integer target) {
