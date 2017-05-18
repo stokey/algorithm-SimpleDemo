@@ -12,13 +12,13 @@ public class BubbleSort implements ISort {
     protected <T extends Comparable<? super T>> void bubbleSort(T[] input) {
         for (int i = 0; i < input.length; i++) {
             int maxIndex = 0;
-            int endIndex = input.length - i;
-            for (int j = 1; j < endIndex; j++) {
+            int endIndex = input.length - i - 1;
+            for (int j = 1; j <= endIndex; j++) {
                 if (input[j].compareTo(input[maxIndex]) > 0) {
                     maxIndex = j;
                 }
             }
-            Utils.swap(input, maxIndex, endIndex-1);
+            Utils.swap(input, maxIndex, endIndex);
         }
     }
 
