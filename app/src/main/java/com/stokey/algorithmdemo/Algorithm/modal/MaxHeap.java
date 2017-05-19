@@ -14,6 +14,7 @@ public class MaxHeap<T extends Comparable<? super T>> {
     /**
      * 构造最大堆（数组首位元素为空）
      * O(nlogn)
+     *
      * @param capacity
      */
     public MaxHeap(int capacity) {
@@ -24,6 +25,7 @@ public class MaxHeap<T extends Comparable<? super T>> {
 
     /**
      * 构造最大堆O(n)
+     *
      * @param array
      * @param n
      */

@@ -6,5 +6,6 @@ package com.stokey.algorithmdemo.Algorithm.basic;
 
 public interface ISort {
     <T extends Comparable<? super T>> void sort(T[] input);
+
     <T extends Comparable<? super T>> void sortAdvance(T[] input) throws Exception;
 }

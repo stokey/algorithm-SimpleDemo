@@ -18,7 +18,7 @@ public class InsertSort implements ISort {
         for (int i = 1; i < input.length; i++) {
             for (int j = i; j > 0; j--) {
                 if (input[j].compareTo(input[j - 1]) < 0) {
-                    Utils.swap(input, j-1, j);
+                    Utils.swap(input, j - 1, j);
                 } else {
                     break;
                 }

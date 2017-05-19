@@ -67,16 +67,16 @@ public class HeapSort implements ISort {
     }
 
     private <T extends Comparable<? super T>> void shiftDown(T[] input, int n, int k) {
-        while (2*k+1 <= n){
-            int j = 2*k+1;
-            if (j+1<n &&  input[j].compareTo(input[j+1])<0){
+        while (2 * k + 1 <= n) {
+            int j = 2 * k + 1;
+            if (j + 1 < n && input[j].compareTo(input[j + 1]) < 0) {
                 j++;
             }
 
-            if (input[k].compareTo(input[j])<0){
-                Utils.swap(input,k,j);
+            if (input[k].compareTo(input[j]) < 0) {
+                Utils.swap(input, k, j);
                 k = j;
-            } else{
+            } else {
                 break;
             }
         }

@@ -65,7 +65,7 @@ public class MergeSort implements ISort {
     private <T extends Comparable<? super T>> void mergeSort(T[] input, int left, int right) {
         if (left < right) {
             // 防止越界
-            int mid = left + (right-left) / 2;
+            int mid = left + (right - left) / 2;
             mergeSort(input, left, mid);
             mergeSort(input, mid + 1, right);
             merge(input, left, mid, right);
@@ -91,7 +91,7 @@ public class MergeSort implements ISort {
     private <T extends Comparable<? super T>> void mergeSortAdvance(T[] input, int left, int right) {
         if (left < right) {
             // 防止越界
-            int mid = left + (right-left) / 2;
+            int mid = left + (right - left) / 2;
             mergeSort(input, left, mid);
             mergeSort(input, mid + 1, right);
             if (input[mid].compareTo(input[mid + 1]) > 0) {

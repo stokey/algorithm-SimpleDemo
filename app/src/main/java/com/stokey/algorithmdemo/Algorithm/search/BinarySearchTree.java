@@ -23,7 +23,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
             this.right = null;
         }
 
-        public Node(Node node){
+        public Node(Node node) {
             this.key = node.key;
             this.value = node.value;
             this.left = node.left;
@@ -278,28 +278,29 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
 
     /**
      * 根据键值删除某一节点
+     *
      * @param key
      */
-    public void remove(Key key){
-        this.root = remove(this.root,key);
+    public void remove(Key key) {
+        this.root = remove(this.root, key);
     }
 
     private Node remove(Node root, Key key) {
-        if (root == null){
+        if (root == null) {
             return null;
         }
-        if (root.key.compareTo(key)>0){
-            return remove(root.left,key);
-        } else if (root.key.compareTo(key)<0){
-            return remove(root.right,key);
+        if (root.key.compareTo(key) > 0) {
+            return remove(root.left, key);
+        } else if (root.key.compareTo(key) < 0) {
+            return remove(root.right, key);
         } else {
-            if (root.left == null){
+            if (root.left == null) {
                 Node right = root.right;
                 root.right = null;
                 this.count--;
                 return right;
             }
-            if (root.right == null){
+            if (root.right == null) {
                 Node left = root.left;
                 root.left = null;
                 this.count--;
