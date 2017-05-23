@@ -47,7 +47,19 @@ public class C16ReverseList {
         if (head == null) {
             return head;
         }
-
-        return head;
+        LinkNode pReversedHead = null;
+        LinkNode pNode = head;
+        LinkNode pPreNode = null;
+        while (pPreNode != null) {
+            LinkNode pNext = pNode.getNextNode();
+            if (pNext == null) {
+                // 链表尾部
+                pReversedHead = pNode;
+            }
+            pNode.setNextNode(pPreNode);
+            pPreNode = pNode;
+            pNode = pNext;
+        }
+        return pReversedHead;
     }
 }
