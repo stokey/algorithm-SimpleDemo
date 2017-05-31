@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.stokey.algorithmdemo.Algorithm.basic.GenerateData;
 import com.stokey.algorithmdemo.Algorithm.util.Utils;
+import com.stokey.algorithmdemo.Sword2Offer.D28StringPermutation;
+import com.stokey.algorithmdemo.Sword2Offer.E30GetLeastNumbers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,7 +14,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sort();
+        //sort();
+        int[] result = E30GetLeastNumbers.least(new int[]{2,8,9,7,3,1},4);
+        System.out.println(String.valueOf(result));
     }
 
     private void sort() {
