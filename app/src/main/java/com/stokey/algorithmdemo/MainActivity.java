@@ -7,6 +7,7 @@ import com.stokey.algorithmdemo.Algorithm.basic.GenerateData;
 import com.stokey.algorithmdemo.Algorithm.util.Utils;
 import com.stokey.algorithmdemo.Sword2Offer.D28StringPermutation;
 import com.stokey.algorithmdemo.Sword2Offer.E30GetLeastNumbers;
+import com.stokey.algorithmdemo.Sword2Offer.E33SortArrayForMinNumber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,8 +16,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //sort();
-        int[] result = E30GetLeastNumbers.least(new int[]{2,8,9,7,3,1},4);
-        System.out.println(String.valueOf(result));
+        //int[] result = E30GetLeastNumbers.least(new int[]{2,8,9,7,3,1},4);
+        //System.out.println(String.valueOf(result));
+        String reuslt = E33SortArrayForMinNumber.printMinNumber(new String[]{"3","32","321"});
     }
 
     private void sort() {
