@@ -86,19 +86,21 @@ public class F39BalancedBinaryTree {
         if (root == null) {
             return true;
         }
-        return isAdvance(root, 0);
+        Integer deep = 0;
+        return isAdvance(root, deep);
     }
 
-    private static boolean isAdvance(TreeNode root, int deep) {
+    private static boolean isAdvance(TreeNode root, Integer deep) {
         if (root == null) {
             deep = 0;
             return true;
         }
-        int left = 0, right = 0;
+        Integer left = 0;
+        Integer right = 0;
         if (isAdvance(root.getLeft(), left) && isAdvance(root.getRight(), right)) {
             int diff = Math.abs(left - right);
             if (diff <= 1) {
-                deep = 1 + (left > right ? left : right);
+                deep = 1 + Math.max(left, right);
                 return true;
             }
         }
