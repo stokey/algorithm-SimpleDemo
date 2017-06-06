@@ -72,4 +72,24 @@ public class F42ReverseSentence {
         }
         return input;
     }
+
+    /**
+     * 字符串左旋转：把字符串前面的若干个字符转移到字符串的尾部
+     * 【abcdefg + 2 ===> cdefgab】
+     * 解法：把字符串看成两部分[0...num] + [num+1...size]
+     * ===> [num...0] + [size...num+1] ===> [num+1...0...num]
+     * { abcdefg ===>[ab][cdefg]===>[ba][gfedc]===>[cdefgab]}
+     * @param input
+     * @param num
+     */
+    public static String reverseLeft(char[] input, int num) {
+        if (input == null || input.length < num || num <0) {
+            throw new RuntimeException("input error");
+        }
+        int len = input.length;
+        reverse(input,0,num-1);
+        reverse(input,num,len-1);
+        reverse(input,0,len-1);
+        return new String(input);
+    }
 }
