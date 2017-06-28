@@ -58,7 +58,7 @@ public class B10NumberOf1InBinary {
     public static int get1NumsAdvance2(int input) {
         int count = 0;
 
-        // n & (n-1) 表示将n的最右边位1变成0，左边不变，更右边0变成1
+        // n & (n-1) 表示将n的最右边位1变成0
         // 10: 1100 & 9: 1011 ==> 6:1000
         while (input != 0) {
             ++count;

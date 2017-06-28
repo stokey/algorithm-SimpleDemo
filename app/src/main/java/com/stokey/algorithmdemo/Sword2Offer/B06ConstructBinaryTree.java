@@ -34,7 +34,7 @@ public class B06ConstructBinaryTree {
             int size = midOrder.length;
             int rootValue = preOrder[0];
             root = new BinaryTreeNode(rootValue);
-            int i = -1;
+            int i = 0;
             for (; i < size; i++) {
                 if (rootValue == midOrder[i]) {
                     break;

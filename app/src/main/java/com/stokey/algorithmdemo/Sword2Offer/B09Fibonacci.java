@@ -50,7 +50,7 @@ public class B09Fibonacci {
     }
 
     /**
-     * 最优解，时间复杂度O(nlogn)
+     * 最优解，时间复杂度O(logn)
      * 使用到矩阵
      * @param n
      * @return

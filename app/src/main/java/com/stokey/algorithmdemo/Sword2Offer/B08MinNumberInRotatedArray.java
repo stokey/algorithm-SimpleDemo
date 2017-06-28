@@ -8,7 +8,7 @@ public class B08MinNumberInRotatedArray {
     /**
      * 排序时间复杂度O(n),空间复杂度不超过O(n)
      * 待排序数据大小范围[0,k]
-     *
+     * 统计2万名员工年龄人数分布
      * @param input
      * @param length
      */
@@ -30,18 +30,6 @@ public class B08MinNumberInRotatedArray {
                 throw new RuntimeException("input data error,not in range");
             }
             ++numCountArray[num];
-        }
-
-        int index = 0;
-        // 输出已经记录num出现的次数
-        for (int i = 0; i < numMax; i++) {
-            int countNums = numCountArray[i];
-            if (countNums > 0) {
-                for (int j = 0; j < countNums; j++) {
-                    input[index] = i;
-                    ++index;
-                }
-            }
         }
     }
 

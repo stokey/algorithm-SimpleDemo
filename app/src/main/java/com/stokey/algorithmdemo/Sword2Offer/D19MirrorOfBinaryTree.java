@@ -51,7 +51,7 @@ public class D19MirrorOfBinaryTree {
             return null;
         }
         if (head.getLeft() == null && head.getRight() == null) {
-            return null;
+            return head;
         }
         TreeNode<Integer> temp = head.getLeft();
         head.setLeft(head.getRight());

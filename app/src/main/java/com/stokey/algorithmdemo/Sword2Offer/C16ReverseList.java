@@ -50,7 +50,7 @@ public class C16ReverseList {
         LinkNode pReversedHead = null;
         LinkNode pNode = head;
         LinkNode pPreNode = null;
-        while (pPreNode != null) {
+        while (pNode != null) {
             LinkNode pNext = pNode.getNextNode();
             if (pNext == null) {
                 // 链表尾部
