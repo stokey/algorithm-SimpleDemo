@@ -47,13 +47,13 @@ public class F42ReverseSentence {
         char[] inputChar = input.toCharArray();
         reverse(inputChar, 0, len - 1);
         // 翻转单词
-        int left = 0, right = 0;
-        while (left < len) {
-            ++right;
-            if (right == len || inputChar[right] == ' ') {
-                reverse(inputChar, left, right - 1);
-                ++right;
-                left = right;
+        int start = 0, end = 0;
+        while (start < len) {
+            ++end;
+            if (start == len || inputChar[start] == ' ') {
+                reverse(inputChar, start, end - 1);
+                ++end;
+                start = end;
             }
         }
         return new String(inputChar);
@@ -78,7 +78,7 @@ public class F42ReverseSentence {
      * 【abcdefg + 2 ===> cdefgab】
      * 解法：把字符串看成两部分[0...num] + [num+1...size]
      * ===> [num...0] + [size...num+1] ===> [num+1...0...num]
-     * { abcdefg ===>[ab][cdefg]===>[ba][gfedc]===>[cdefgab]}
+     * { abcdefg ===>[ab][cdefg]===>[ba]+[gfedc]===>[cdefgab]}
      * @param input
      * @param num
      */
