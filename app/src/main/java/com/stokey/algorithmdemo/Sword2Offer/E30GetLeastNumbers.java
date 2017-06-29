@@ -117,7 +117,7 @@ public class E30GetLeastNumbers {
         }
         int temp = input[left];
         int i = left + 1, j = right;
-        while (true) {
+        while (i > j) {
             while (i <= right && input[i] <= temp) i++;
             while (j >= left + 1 && input[j] >= temp) j--;
 

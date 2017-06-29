@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class D26CopyComplexList {
     /**
      * 复制复杂链表
-     * 用HashMap存储sibling节点
+     * 用HashMap存储
      *
      * @param head
      * @return
@@ -21,12 +21,12 @@ public class D26CopyComplexList {
         ComplexListNode currentNode = head;
         HashMap<ComplexListNode, ComplexListNode> map = new HashMap<>();
         while (currentNode != null) {
-            map.put(currentNode, currentNode);
+            map.put(currentNode, new ComplexListNode(currentNode.getValue()));
             currentNode = currentNode.getNextNode();
         }
         currentNode = head;
         while (currentNode != null) {
-            map.get(currentNode).setNextNode(map.get(currentNode).getNextNode());
+            map.get(currentNode).setNextNode(map.get(currentNode.getNextNode()));
             map.get(currentNode).setSiblingNode(map.get(currentNode.getSiblingNode()));
             currentNode = currentNode.getNextNode();
         }

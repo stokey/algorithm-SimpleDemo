@@ -15,19 +15,19 @@ public class D27ConvertBinnarySearchTree {
      * @param root
      * @return
      */
-    public static TreeNode convert(TreeNode root) {
+    public static DoubleLinkNode convert(DoubleLinkNode root) {
         if (root == null) {
             return null;
         }
         LinkedList linkList = new LinkedList();
         inOrderToQueue(root, linkList);
 
-        root = (TreeNode) linkList.poll();
-        TreeNode pre = root;
+        root = (DoubleLinkNode) linkList.poll();
+        DoubleLinkNode pre = root;
         pre.left = null;
-        TreeNode current = null;
+        DoubleLinkNode current = null;
         while (!linkList.isEmpty()) {
-            current = (TreeNode) linkList.poll();
+            current = (DoubleLinkNode) linkList.poll();
             pre.right = current;
             current.left = pre;
             pre = current;
@@ -37,7 +37,7 @@ public class D27ConvertBinnarySearchTree {
         return root;
     }
 
-    private static void inOrderToQueue(TreeNode root, LinkedList linkList) {
+    private static void inOrderToQueue(DoubleLinkNode root, LinkedList linkList) {
         if (root == null || linkList == null) {
             return;
         }
@@ -52,7 +52,7 @@ public class D27ConvertBinnarySearchTree {
      * @param head
      * @return
      */
-    public static TreeNode convert2(TreeNode head) {
+    public static DoubleLinkNode convert2(DoubleLinkNode head) {
         if (head == null) {
             return null;
         }
@@ -60,18 +60,18 @@ public class D27ConvertBinnarySearchTree {
     }
 }
 
-class TreeNode {
+class DoubleLinkNode {
     public int value;
-    public TreeNode left;
-    public TreeNode right;
+    public DoubleLinkNode left;
+    public DoubleLinkNode right;
 
-    public TreeNode(int value) {
+    public DoubleLinkNode(int value) {
         this.value = value;
         this.left = null;
         this.right = null;
     }
 
-    public TreeNode(int value, TreeNode left, TreeNode right) {
+    public DoubleLinkNode(int value, DoubleLinkNode left, DoubleLinkNode right) {
         this.value = value;
         this.left = left;
         this.right = right;

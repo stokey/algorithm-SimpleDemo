@@ -50,4 +50,30 @@ public class E32NumberOf1 {
         }
         return number;
     }
+
+    /**
+     * 从1到n整数中1出现的次数
+     * 直接法：时间复杂度O(nlogn)
+     * @param n
+     * @return
+     */
+    public static int numOld(int n){
+        int number = 0;
+        for (int i=1;i<=n;i++){
+            number += NumberOf1(i);
+        }
+        return number;
+    }
+
+    private static int NumberOf1(int num){
+        int number = 0;
+        while (num>0){
+            if (num %10==1){
+                ++number;
+            }
+            num /= 10;
+        }
+        return number;
+    }
+
 }
