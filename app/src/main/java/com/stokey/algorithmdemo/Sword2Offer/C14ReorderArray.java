@@ -13,30 +13,40 @@ public class C14ReorderArray {
      *
      * @param input
      */
-    public static void reorder(Integer[] input) {
-        // TODO:检查输入合法性
+    public static Integer[] reorder(Integer[] input) {
         if (input == null || input.length <= 1) {
-            return;
+            return null;
         }
 
         int left = 0, right = input.length - 1;
 
         while (left < right) {
-            while (left < right && isOddNum(input[left])) {
+            // left 需要显示奇数 （找到偶数）
+            while (left < right && !isOddNum(input[left])) {
                 ++left;
             }
 
-            while (left < right && !isOddNum(input[right])) {
+            while (left < right && isOddNum(input[right])) {
                 --right;
             }
-
+            // right 需要显示偶数（找到奇数）
             if (left < right) {
                 Utils.swap(input, left, right);
             }
         }
+        return input;
     }
 
     private static boolean isOddNum(int num) {
         return (num & 0x1) == 0;
+    }
+}
+
+class C14Test {
+    public static void main(String[] args) {
+        Integer[] result = C14ReorderArray.reorder(new Integer[]{1, 2, 3, 4, 5, 6, 7});
+        for (int i = 0; i < result.length; i++) {
+            System.out.println("i:" + i + "===>" + result[i]);
+        }
     }
 }

@@ -42,6 +42,11 @@ public class E29MoreThanHalfNum {
      * <p>
      * 数组中有一个数字出现的次数超过数组长度的一半，则它出现的次数比其他所有数字出现的次数还要多
      * 时间复杂度O(n)
+     * 分析：
+     * 根据题要分析——待查数字出现的次数比其他所有数字出现的次数的和还要多。
+     * 方法：
+     * 在遍历数组的时候保存两个数值。一个是数组中的一个数字，一个是次数。当遍历到下一个数组时，
+     * 如果和上一个数字相同则次数加一，否则减一。如果次数为0，则保存下一个数字时次数设为1
      *
      * @param input
      * @return
@@ -99,14 +104,18 @@ public class E29MoreThanHalfNum {
      * @return
      */
     private static int partition(int[] input, int left, int right) {
-        if (input == null || input.length <= 0 || left < 0 || left >= right) {
+        if (input == null || input.length <= 0 || left < 0 || left > right) {
             throw new RuntimeException("partition input error");
         }
         int temp = input[left];
         int i = left + 1, j = right;
         while (true) {
-            while (i <= right && input[i] <= temp) i++;
-            while (j >= left + 1 && input[j] >= temp) j--;
+            while (i <= right && input[i] <= temp) {
+                i++;
+            }
+            while (j >= left + 1 && input[j] >= temp) {
+                j--;
+            }
 
             if (i > j) {
                 break;
@@ -120,8 +129,7 @@ public class E29MoreThanHalfNum {
     }
 
     private static void swap(int[] input, int i, int j) {
-        if (input == null || input.length <= 0 ||
-                input.length <= i || input.length <= j || i < 0 || j < 0) {
+        if (input == null || input.length <= i || input.length <= j || i < 0 || j < 0) {
             return;
         }
         int temp = input[j];

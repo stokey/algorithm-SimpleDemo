@@ -1,65 +1,53 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import com.stokey.algorithmdemo.Algorithm.model.LinkNode;
+
 /**
  * Created by tiangen on 2017/5/23.
  */
 
 public class C16ReverseList {
-    class LinkNode<T> {
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public LinkNode getNextNode() {
-            return nextNode;
-        }
-
-        public void setNextNode(LinkNode nextNode) {
-            this.nextNode = nextNode;
-        }
-
-        public LinkNode(T value) {
-            this.value = value;
-            this.nextNode = null;
-        }
-
-
-        public LinkNode(T value, LinkNode nextNode) {
-            this.value = value;
-            this.nextNode = nextNode;
-        }
-
-        private T value;
-        private LinkNode nextNode;
-    }
-
     /**
      * 反转链表
-     *
+     * 三个指针
+     * 1. 当前遍历到的节点
+     * 2. 当前节点的上一个节点
+     * 3. 当前节点的下一个节点
      * @param head
      * @return
      */
-    public static LinkNode<Integer> reverse(LinkNode<Integer> head) {
+    public static LinkNode reverse(LinkNode head) {
         if (head == null) {
             return head;
         }
-        LinkNode pReversedHead = null;
-        LinkNode pNode = head;
-        LinkNode pPreNode = null;
-        while (pNode != null) {
-            LinkNode pNext = pNode.getNextNode();
+        LinkNode reversedHead = null;
+        // 当前遍历节点
+        LinkNode currentNode = head;
+        // 当前遍历节点的上一个节点
+        LinkNode preNode = null;
+        while (currentNode != null) {
+            // 当前遍历节点的下一个节点
+            LinkNode pNext = currentNode.getNextNode();
             if (pNext == null) {
                 // 链表尾部
-                pReversedHead = pNode;
+                reversedHead = currentNode;
             }
-            pNode.setNextNode(pPreNode);
-            pPreNode = pNode;
-            pNode = pNext;
+            currentNode.setNextNode(preNode);
+            preNode = currentNode;
+            currentNode = pNext;
         }
-        return pReversedHead;
+        return reversedHead;
+    }
+}
+
+class C16Test {
+    public static void main(String[] args) {
+        LinkNode<Integer> tail = new LinkNode<>(5);
+        LinkNode<Integer> four = new LinkNode<>(4, tail);
+        LinkNode<Integer> three = new LinkNode<>(3, four);
+        LinkNode<Integer> two = new LinkNode<>(2, three);
+        LinkNode<Integer> head = new LinkNode<>(1, two);
+
+        System.out.println(C16ReverseList.reverse(head));
     }
 }

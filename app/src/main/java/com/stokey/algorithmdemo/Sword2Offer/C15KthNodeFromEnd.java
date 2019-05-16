@@ -1,60 +1,32 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import com.stokey.algorithmdemo.Algorithm.model.LinkNode;
+
 /**
  * Created by tiangen on 2017/5/23.
  */
 
 public class C15KthNodeFromEnd {
-    class ListNode<T> {
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public ListNode getNextNode() {
-            return nextNode;
-        }
-
-        public void setNextNode(ListNode nextNode) {
-            this.nextNode = nextNode;
-        }
-
-        public ListNode(T value) {
-            this.value = value;
-            this.nextNode = null;
-        }
-
-
-        public ListNode(T value, ListNode nextNode) {
-            this.value = value;
-            this.nextNode = nextNode;
-        }
-
-        private T value;
-        private ListNode nextNode;
-    }
-
     /**
      * 输出链表中倒数第k个节点
-     *
+     * 双指针法
      * @param head
      * @param k
      * @return
      */
-    public static ListNode<Integer> findKthNode(ListNode<Integer> head, int k) {
+    public static LinkNode findKthNode(LinkNode head, int k) {
         if (head == null || k <= 0) {
-            throw new RuntimeException("input error");
+            return null;
         }
 
-        ListNode<Integer> p1 = head, p2 = head;
-        for (int i = 0; i < k; i++) {
-            if (i < k && p2.getNextNode() == null) {
-                throw new RuntimeException("input error: k number is too large");
+        LinkNode p1 = head, p2 = head;
+
+        for (int i = 0; i < k - 1; i++) {
+            if (p2.getNextNode() == null) {
+                return null;
+            } else {
+                p2 = p2.getNextNode();
             }
-            p2 = p2.getNextNode();
         }
 
         while (p2.getNextNode() != null) {
@@ -72,12 +44,12 @@ public class C15KthNodeFromEnd {
      * @param head
      * @return
      */
-    public static ListNode<Integer> findMidNode(ListNode<Integer> head) {
+    public static LinkNode findMidNode(LinkNode head) {
         if (head == null) {
-            throw new RuntimeException("input error:head is null");
+            return null;
         }
 
-        ListNode<Integer> slow = head, quick = head;
+        LinkNode slow = head, quick = head;
 
         while (quick.getNextNode() != null && quick.getNextNode().getNextNode() != null) {
             slow = slow.getNextNode();
@@ -93,20 +65,33 @@ public class C15KthNodeFromEnd {
      * @param head
      * @return
      */
-    public static boolean isCircle(ListNode<Integer> head) {
+    public static boolean isCircle(LinkNode head) {
         if (head == null) {
-            throw new RuntimeException("input error:head is null");
+            return false;
         }
 
-        ListNode<Integer> slow = head, quick = head;
+        LinkNode slow = head, quick = head;
 
-        while (slow.getNextNode() != null && quick.getNextNode() != null && quick.getNextNode().getNextNode() != null) {
+        while (quick.getNextNode() != null && quick.getNextNode().getNextNode() != null) {
             quick = quick.getNextNode().getNextNode();
             slow = slow.getNextNode();
-            if (quick != null && slow != null && quick == slow) {
+            if (slow != null && quick == slow) {
                 return true;
             }
         }
         return false;
+    }
+}
+
+class C15Test {
+    public static void main(String[] args) {
+        LinkNode<Integer> tail = new LinkNode<>(5);
+        LinkNode<Integer> four = new LinkNode<>(4, tail);
+        LinkNode<Integer> three = new LinkNode<>(3, four);
+        LinkNode<Integer> two = new LinkNode<>(2, three);
+        LinkNode<Integer> head = new LinkNode<>(1, two);
+        System.out.println(C15KthNodeFromEnd.findKthNode(head, 2));
+        System.out.println("Mid Node:" + C15KthNodeFromEnd.findMidNode(head));
+        System.out.println("is Circle Link:" + C15KthNodeFromEnd.isCircle(head));
     }
 }

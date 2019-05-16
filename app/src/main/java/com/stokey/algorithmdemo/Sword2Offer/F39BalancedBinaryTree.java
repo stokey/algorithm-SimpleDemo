@@ -1,58 +1,24 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import com.stokey.algorithmdemo.Algorithm.model.BinaryTreeNode;
+
 /**
  * Created by stokey on 2017/6/4.
  */
 
 public class F39BalancedBinaryTree {
-    class TreeNode<T> {
-        private T value;
-        private TreeNode left;
-        private TreeNode right;
-
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public TreeNode getLeft() {
-            return left;
-        }
-
-        public void setLeft(TreeNode left) {
-            this.left = left;
-        }
-
-        public TreeNode getRight() {
-            return right;
-        }
-
-        public void setRight(TreeNode right) {
-            this.right = right;
-        }
-
-        public TreeNode(T value) {
-            this.value = value;
-            this.left = null;
-            this.right = null;
-        }
-    }
-
     /**
      * 获取一棵树的深度
      *
      * @param root
      * @return
      */
-    public static int deep(TreeNode root) {
+    public static int deep(BinaryTreeNode root) {
         if (root == null) {
             return 0;
         }
-        int left = deep(root.getLeft());
-        int right = deep(root.getRight());
+        int left = deep(root.getLeftNode());
+        int right = deep(root.getRightNode());
         return left > right ? (left + 1) : (right + 1);
     }
 
@@ -63,16 +29,16 @@ public class F39BalancedBinaryTree {
      * @param root
      * @return
      */
-    public static boolean isBalanceTree(TreeNode root) {
+    public static boolean isBalanceTree(BinaryTreeNode root) {
         if (root == null) {
             return true;
         }
-        int left = deep(root.getLeft());
-        int right = deep(root.getRight());
+        int left = deep(root.getLeftNode());
+        int right = deep(root.getRightNode());
         if (Math.abs(left - right) > 1) {
             return false;
         }
-        return isBalanceTree(root.getLeft()) && isBalanceTree(root.getRight());
+        return isBalanceTree(root.getLeftNode()) && isBalanceTree(root.getRightNode());
     }
 
     /**
@@ -82,7 +48,7 @@ public class F39BalancedBinaryTree {
      * @param root
      * @return
      */
-    public static boolean isBalanceTreeAdvance(TreeNode root) {
+    public static boolean isBalanceTreeAdvance(BinaryTreeNode root) {
         if (root == null) {
             return true;
         }
@@ -90,14 +56,14 @@ public class F39BalancedBinaryTree {
         return isAdvance(root, deep);
     }
 
-    private static boolean isAdvance(TreeNode root, Integer deep) {
+    private static boolean isAdvance(BinaryTreeNode root, Integer deep) {
         if (root == null) {
             deep = 0;
             return true;
         }
         Integer left = 0;
         Integer right = 0;
-        if (isAdvance(root.getLeft(), left) && isAdvance(root.getRight(), right)) {
+        if (isAdvance(root.getLeftNode(), left) && isAdvance(root.getRightNode(), right)) {
             int diff = Math.abs(left - right);
             if (diff <= 1) {
                 deep = 1 + Math.max(left, right);

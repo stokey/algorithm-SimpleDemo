@@ -49,21 +49,26 @@ public class E30GetLeastNumbers {
         if (input == null || input.length <= 0 || k <= 0 || k > input.length) {
             throw new RuntimeException("input error");
         }
-        int[] output = new int[k];
+        int[] output = new int[k+1];
         for (int i = 0; i < k; i++) {
-            output[i] = input[i];
+            output[i+1] = input[i];
         }
 
         // 建立最大堆
         heapify(output);
 
         for (int j = k; j < input.length; j++) {
-            if (input[j] < output[0]) {
-                output[0] = input[j];
-                shiftDown(output, 0, k);
+            if (input[j] < output[1]) {
+                output[1] = input[j];
+                shiftDown(output, 1, k);
             }
         }
-        return output;
+        int[] result = new int[k];
+        // 去除0号元素
+        for (int i = 0; i < k; i++) {
+            result[i] = output[i + 1];
+        }
+        return result;
     }
 
     /**
@@ -78,15 +83,15 @@ public class E30GetLeastNumbers {
         }
         int count = output.length;
         int parentLeafCount = count / 2;
-        for (int k = parentLeafCount; k >= 0; k--) {
+        for (int k = parentLeafCount; k > 0; k--) {
             shiftDown(output, k, count);
         }
     }
 
     private static void shiftDown(int[] input, int k, int size) {
         int parent = input[k];
-        int childLeft = 2 * k + 1;
-        int childRight = 2 * (k + 1);
+        int childLeft = 2 * k;
+        int childRight = childLeft + 1;
 
         int maxNumIndex = k;
         if (childLeft <= size) {
@@ -100,6 +105,20 @@ public class E30GetLeastNumbers {
 
         if (input[maxNumIndex] < parent) {
             swap(input, maxNumIndex, k);
+        }
+    }
+
+    private static void shifDown2(int[] input, int k, int size) {
+        while (2 * k <= size) {
+            int child = 2 * k;
+            if ( child + 1 <= size && input[child + 1] < input[child]) {
+                child += 1;
+            }
+            if (input[k] >= input[child]) {
+                break;
+            }
+            swap(input, child, k);
+            k = child;
         }
     }
 
@@ -118,8 +137,12 @@ public class E30GetLeastNumbers {
         int temp = input[left];
         int i = left + 1, j = right;
         while (i > j) {
-            while (i <= right && input[i] <= temp) i++;
-            while (j >= left + 1 && input[j] >= temp) j--;
+            while (i <= right && input[i] <= temp) {
+                i++;
+            }
+            while (j >= left + 1 && input[j] >= temp) {
+                j--;
+            }
 
             if (i > j) {
                 break;
@@ -133,8 +156,7 @@ public class E30GetLeastNumbers {
     }
 
     private static void swap(int[] input, int i, int j) {
-        if (input == null || input.length <= 0 ||
-                input.length <= i || input.length <= j || i < 0 || j < 0) {
+        if (input == null || input.length <= i || input.length <= j || i < 0 || j < 0) {
             return;
         }
         int temp = input[j];

@@ -17,12 +17,14 @@ public class C11Power {
         if (isEqual(base, 0.0)) {
             if (exponent < 0) {
                 throw new RuntimeException("input error");
+            } else if (exponent == 0) {
+                return 1.0;
             } else {
-                return 1;
+                return 0.0;
             }
         }
         if (exponent == 0) {
-            return 1;
+            return 1.0;
         } else if (exponent == 1) {
             return base;
         }
@@ -48,8 +50,10 @@ public class C11Power {
         if (isEqual(base, 0.0)) {
             if (exponent < 0) {
                 throw new RuntimeException("input error");
-            } else {
+            } else if(exponent == 0){
                 return 1;
+            } else {
+                return 0;
             }
         }
         int absExponent = exponent < 0 ? -exponent : exponent;
@@ -69,6 +73,15 @@ public class C11Power {
      * @return
      */
     private static double powerUnsigned(double base, int exponent) {
+        if (isEqual(0.0, base)) {
+            if (exponent < 0) {
+                throw new RuntimeException("input error");
+            } else if (exponent == 0) {
+                return 0;
+            } else {
+                return 1;
+            }
+        }
         if (exponent == 0) {
             return 1;
         } else if (exponent == 1) {
@@ -84,11 +97,23 @@ public class C11Power {
         return result;
     }
 
+    // TODO 考虑大数 怎么处理？
+
     private static boolean isEqual(double i, double j) {
         if (Math.abs(i - j) < 0.0000001) {
             return true;
         } else {
             return false;
         }
+    }
+}
+
+class C11Test {
+    public static void main(String[] args) {
+        System.out.println("2 pow 4 is " + C11Power.power(2, 4));
+        System.out.println("0 pow 0 is " + C11Power.power(0, 0));
+        System.out.println("0 pow 2 is " + C11Power.power(0, 2));
+
+        System.out.println("2 pow 16 is " + C11Power.powerAdvance(2, 16));
     }
 }

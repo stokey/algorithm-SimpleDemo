@@ -1,5 +1,8 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import com.stokey.algorithmdemo.Algorithm.model.BinaryTreeNode;
+import com.stokey.algorithmdemo.Algorithm.model.GraphModal;
+
 import java.util.LinkedList;
 
 /**
@@ -7,66 +10,49 @@ import java.util.LinkedList;
  */
 
 public class D23PrintFromTopToBottom {
-    class TreeNode<T> {
-        private T value;
-        private TreeNode left;
-        private TreeNode right;
-
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public TreeNode getLeft() {
-            return left;
-        }
-
-        public void setLeft(TreeNode left) {
-            this.left = left;
-        }
-
-        public TreeNode getRight() {
-            return right;
-        }
-
-        public void setRight(TreeNode right) {
-            this.right = right;
-        }
-
-        public TreeNode(T value) {
-            this.value = value;
-            this.left = null;
-            this.right = null;
-        }
-    }
-
     /**
      * 从上往下打印二叉树
      * 二叉树的层序遍历
      *
      * @param root
      */
-    public static void printV(TreeNode<Integer> root) {
+    public static void printV(BinaryTreeNode<Integer> root) {
         if (root == null) {
             return;
         }
-        LinkedList list = new LinkedList();
-        list.push(root);
+        LinkedList<BinaryTreeNode> list = new LinkedList<BinaryTreeNode>();
+        list.add(root);
 
         while (!list.isEmpty()) {
-            TreeNode node = (TreeNode) list.poll();
+            BinaryTreeNode node = list.poll();
             System.out.println("Value:" + node.getValue());
 
-            if (node.getLeft() != null) {
-                list.push(node.getLeft());
+            if (node.getLeftNode() != null) {
+                list.add(node.getLeftNode());
             }
 
-            if (node.getRight() != null) {
-                list.push(node.getRight());
+            if (node.getRightNode() != null) {
+                list.add(node.getRightNode());
             }
         }
+    }
+
+    /**
+     * 广度优先遍历一个有向图
+     * TODO 通过队列实现
+     * @param modal
+     */
+    public static void printG(GraphModal modal) {
+
+    }
+}
+
+class D23Test {
+    public static void main(String[] args) {
+        BinaryTreeNode<Integer> leftLeafNode = new BinaryTreeNode<Integer>(4);
+        BinaryTreeNode<Integer> rightLeafNode = new BinaryTreeNode<Integer>(7);
+        BinaryTreeNode<Integer> root1 = new BinaryTreeNode<Integer>(2, leftLeafNode, rightLeafNode);
+
+        D23PrintFromTopToBottom.printV(root1);
     }
 }

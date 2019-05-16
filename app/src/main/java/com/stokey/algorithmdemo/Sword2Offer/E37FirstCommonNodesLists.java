@@ -1,5 +1,7 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import com.stokey.algorithmdemo.Algorithm.model.LinkNode;
+
 import java.util.Stack;
 
 /**
@@ -7,37 +9,6 @@ import java.util.Stack;
  */
 
 public class E37FirstCommonNodesLists {
-    class ListNode<T> {
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public ListNode getNextNode() {
-            return nextNode;
-        }
-
-        public void setNextNode(ListNode nextNode) {
-            this.nextNode = nextNode;
-        }
-
-        public ListNode(T value) {
-            this.value = value;
-            this.nextNode = null;
-        }
-
-
-        public ListNode(T value, ListNode nextNode) {
-            this.value = value;
-            this.nextNode = nextNode;
-        }
-
-        private T value;
-        private ListNode nextNode;
-    }
 
     /**
      * 找出两个链表的共同节点
@@ -49,7 +20,7 @@ public class E37FirstCommonNodesLists {
      * @param second
      * @return
      */
-    public static ListNode<Integer> getCommonNode(ListNode<Integer> first, ListNode<Integer> second) {
+    public static LinkNode<Integer> getCommonNode(LinkNode<Integer> first, LinkNode<Integer> second) {
         if (first == null || second == null) {
             throw new RuntimeException("input error");
         }
@@ -65,12 +36,12 @@ public class E37FirstCommonNodesLists {
             second = second.getNextNode();
         }
 
-        ListNode<Integer> result = null;
+        LinkNode<Integer> result = null;
         while (!stackFirst.isEmpty() && !stackSecond.isEmpty()) {
             if (stackFirst.peek() != stackSecond.peek()) {
                 return result;
             } else {
-                result = (ListNode<Integer>) stackFirst.pop();
+                result = (LinkNode<Integer>) stackFirst.pop();
                 stackSecond.pop();
             }
         }
@@ -88,11 +59,11 @@ public class E37FirstCommonNodesLists {
      * @param second
      * @return
      */
-    public static ListNode<Integer> getCommonNodeAdvance(ListNode<Integer> first, ListNode<Integer> second) {
+    public static LinkNode<Integer> getCommonNodeAdvance(LinkNode<Integer> first, LinkNode<Integer> second) {
         int firstLen = getListLen(first);
         int secondLen = getListLen(second);
-        ListNode<Integer> longList = null;
-        ListNode<Integer> shortList = null;
+        LinkNode<Integer> longList = null;
+        LinkNode<Integer> shortList = null;
         int plus = 0;
         if (firstLen > secondLen) {
             longList = first;
@@ -118,9 +89,9 @@ public class E37FirstCommonNodesLists {
         return null;
     }
 
-    private static int getListLen(ListNode node) {
+    private static int getListLen(LinkNode node) {
         int result = 0;
-        ListNode head = node;
+        LinkNode head = node;
         while (head != null) {
             ++result;
             head = head.getNextNode();

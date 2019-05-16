@@ -1,4 +1,4 @@
-package com.stokey.algorithmdemo.Algorithm.modal;
+package com.stokey.algorithmdemo.Algorithm.model;
 
 import com.stokey.algorithmdemo.Algorithm.util.Utils;
 

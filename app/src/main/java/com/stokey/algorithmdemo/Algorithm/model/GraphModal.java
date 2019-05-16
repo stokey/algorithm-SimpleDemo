@@ -1,4 +1,4 @@
-package com.stokey.algorithmdemo.Algorithm.modal;
+package com.stokey.algorithmdemo.Algorithm.model;
 
 import java.util.Vector;
 

@@ -1,6 +1,4 @@
-package com.stokey.algorithmdemo.Algorithm.modal;
-
-import static junit.framework.Assert.assertTrue;
+package com.stokey.algorithmdemo.Algorithm.model;
 
 /**
  * Created by stokey on 2017/5/18.
@@ -86,7 +84,7 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
      * @return
      */
     public Value search(Key key) {
-        assertTrue("input error", contain(key));
+        assert contain(key);
         return search(root, key);
     }
 

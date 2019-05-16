@@ -2,8 +2,6 @@ package com.stokey.algorithmdemo.Algorithm.search;
 
 import java.util.LinkedList;
 
-import static junit.framework.Assert.assertTrue;
-
 /**
  * Created by stokey on 2017/5/18.
  */
@@ -206,7 +204,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
      * @return
      */
     public Key minimum() {
-        assertTrue("minimum error", this.count <= 0);
+        assert this.count <= 0;
         return minimum(this.root).key;
     }
 
@@ -223,7 +221,7 @@ public class BinarySearchTree<Key extends Comparable<Key>, Value> {
      * @return
      */
     public Key maximum() {
-        assertTrue("maximum error", this.count <= 0);
+        assert this.count <= 0;
         return maximum(this.root).key;
     }
 

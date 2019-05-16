@@ -8,21 +8,22 @@ public class D24SquenceOfBST {
     /**
      * 判断输入数组是否是某二叉搜索树的后序遍历
      * 输入的数组任意两个数字都互不相同
-     * 【后序遍历结果最后一个节点为根节点，搜索二叉树需要满足左子树所有节点都比根节点小】
-     * 【所有右节点都比根节点大】
+     * 【后序遍历结果最后一个节点为根节点，"搜索二叉树需要满足左子树所有节点都比根节点小,所有右节点都比根节点大"】
      *
      * @param input
      * @return
      */
     public static boolean verifySequenceOfBST(int[] input) {
-        //TODO：检查输入合法性
         if (input == null || input.length <= 0) {
             return false;
         }
         return verifySequenceOfBST(input, 0, input.length - 1);
     }
 
-    public static boolean verifySequenceOfBST(int[] input, int start, int end) {
+    private static boolean verifySequenceOfBST(int[] input, int start, int end) {
+        if (input == null || end >= input.length - 1 || start < 0 || end < 0) {
+            return false;
+        }
         if (start >= end) {
             return true;
         }
@@ -47,5 +48,13 @@ public class D24SquenceOfBST {
         }
         return verifySequenceOfBST(input, start, mid - 1) && verifySequenceOfBST(input, mid, end - 1);
 
+    }
+}
+
+class D24Test {
+    public static void main(String[] args) {
+        System.out.println("input array1 is binary search tree:" + D24SquenceOfBST.verifySequenceOfBST(new int[]{5, 7, 6, 9, 11, 10, 8}));
+
+        System.out.println("input array2 is binary search tree:" + D24SquenceOfBST.verifySequenceOfBST(new int[]{7, 4, 6, 5}));
     }
 }

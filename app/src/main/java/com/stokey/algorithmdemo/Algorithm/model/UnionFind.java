@@ -1,4 +1,4 @@
-package com.stokey.algorithmdemo.Algorithm.modal;
+package com.stokey.algorithmdemo.Algorithm.model;
 
 /**
  * Created by stokey on 2017/5/26.

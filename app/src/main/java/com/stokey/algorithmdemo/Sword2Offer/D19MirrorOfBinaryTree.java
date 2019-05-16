@@ -1,67 +1,46 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import com.stokey.algorithmdemo.Algorithm.model.BinaryTreeNode;
+
 /**
  * Created by stokey on 2017/5/23.
  */
 
 public class D19MirrorOfBinaryTree {
-    class TreeNode<T> {
-        private T value;
-        private TreeNode left;
-        private TreeNode right;
-
-        public T getValue() {
-            return value;
-        }
-
-        public void setValue(T value) {
-            this.value = value;
-        }
-
-        public TreeNode getLeft() {
-            return left;
-        }
-
-        public void setLeft(TreeNode left) {
-            this.left = left;
-        }
-
-        public TreeNode getRight() {
-            return right;
-        }
-
-        public void setRight(TreeNode right) {
-            this.right = right;
-        }
-
-        public TreeNode(T value) {
-            this.value = value;
-            this.left = null;
-            this.right = null;
-        }
-    }
-
     /**
-     * 二叉树的镜像
+     * 二叉树的镜像（左节点变右节点，右节点变成左节点）
      * @param head
      * @return
      */
-    public static TreeNode<Integer> mirror(TreeNode<Integer> head) {
+    public static BinaryTreeNode<Integer> mirror(BinaryTreeNode<Integer> head) {
         if (head == null) {
             return null;
         }
-        if (head.getLeft() == null && head.getRight() == null) {
+        if (head.getLeftNode() == null && head.getRightNode() == null) {
             return head;
         }
-        TreeNode<Integer> temp = head.getLeft();
-        head.setLeft(head.getRight());
-        head.setRight(temp);
-        if (head.getLeft() != null) {
-            mirror(head.getLeft());
+        BinaryTreeNode<Integer> temp = head.getLeftNode();
+        head.setLeftNode(head.getRightNode());
+        head.setRightNode(temp);
+        if (head.getLeftNode() != null) {
+            mirror(head.getLeftNode());
         }
-        if (head.getRight() != null) {
-            mirror(head.getRight());
+        if (head.getRightNode() != null) {
+            mirror(head.getRightNode());
         }
         return head;
     }
 }
+
+class D19Test {
+    public static void main(String[] args) {
+        BinaryTreeNode<Integer> leftLeafNode = new BinaryTreeNode<Integer>(4);
+        BinaryTreeNode<Integer> rightLeafNode = new BinaryTreeNode<Integer>(7);
+        BinaryTreeNode<Integer> root1 = new BinaryTreeNode<Integer>(2, leftLeafNode, rightLeafNode);
+
+        root1.printPre();
+        System.out.println("\n===================");
+        D19MirrorOfBinaryTree.mirror(root1).printPre();
+    }
+}
+

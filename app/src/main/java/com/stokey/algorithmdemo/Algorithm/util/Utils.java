@@ -11,8 +11,7 @@ import java.util.Date;
 public class Utils {
 
     public static <T> T[] swap(T[] input, int start, int end) {
-        if (input == null || input.length < 0 || input.length < start ||
-                input.length < end || start > end || start < 0 || end < 0) {
+        if (input == null || input.length < end || start > end || start < 0) {
             // TODO: input is error
             return null;
         }
@@ -33,21 +32,21 @@ public class Utils {
 
     public static <T> void printF(String tag, T[] input, boolean newLine) {
         if (input != null && input.length > 0) {
-            String printStr = "";
+            StringBuilder printStr = new StringBuilder();
             for (int i = 0; i < input.length; i++) {
                 if (newLine) {
-                    printStr = printStr + tag + ": " + input[i] + "\n";
+                    printStr.append(tag).append(": ").append(input[i]).append("\n");
                 } else {
                     if (i == 0) {
-                        printStr = tag + ": " + "[ " + input[i] + ",";
+                        printStr = new StringBuilder(tag + ": " + "[ " + input[i] + ",");
                     }
 
                     if (i == input.length - 1) {
-                        printStr += input[i] + " ]";
+                        printStr.append(input[i]).append(" ]");
                     }
 
                     if (i > 0 && i < input.length - 1) {
-                        printStr += input[i] + ",";
+                        printStr.append(input[i]).append(",");
                     }
                 }
             }
@@ -75,7 +74,7 @@ public class Utils {
             // TODO: input error
             System.out.println("Error: input error");
         }
-        long startTime = new Date().getTime();
+        long startTime = System.currentTimeMillis();
         try {
             Class<ISort> classTemp = (Class<ISort>) Class.forName(className);
             ISort temp = classTemp.newInstance();
@@ -84,7 +83,7 @@ public class Utils {
             } else {
                 temp.sort(input);
             }
-            long endTime = new Date().getTime();
+            long endTime = System.currentTimeMillis();
             printFCostTime(className, input, startTime, endTime, print);
         } catch (Exception e) {
             System.out.println("Error:" + e.getMessage());

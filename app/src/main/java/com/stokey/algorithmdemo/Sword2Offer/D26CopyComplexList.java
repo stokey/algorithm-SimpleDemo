@@ -1,6 +1,9 @@
 package com.stokey.algorithmdemo.Sword2Offer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by tiangen on 2017/5/26.
@@ -76,7 +79,10 @@ public class D26CopyComplexList {
 
 class ComplexListNode {
     private int value;
+    // 指向下一个节点
     private ComplexListNode nextNode;
+    // 指向任意节点
+    private ComplexListNode siblingNode;
 
     public int getValue() {
         return value;
@@ -102,7 +108,11 @@ class ComplexListNode {
         this.siblingNode = siblingNode;
     }
 
-    private ComplexListNode siblingNode;
+    public ComplexListNode(int value) {
+        this.value = value;
+        this.nextNode = null;
+        this.siblingNode = null;
+    }
 
     public ComplexListNode(int value, ComplexListNode nextNode) {
         this.value = value;
@@ -110,16 +120,14 @@ class ComplexListNode {
         this.siblingNode = null;
     }
 
-    public ComplexListNode(int value) {
+    public ComplexListNode(int value, ComplexListNode nextNode, ComplexListNode siblingNode) {
         this.value = value;
-        this.nextNode = null;
-        this.siblingNode = null;
-    }
-
-    public ComplexListNode() {
-        this.value = 0;
-        this.nextNode = null;
-        this.siblingNode = null;
+        this.nextNode = nextNode;
+        this.siblingNode = siblingNode;
     }
 }
 
+class D26Test {
+    public static void main(String[] args) {
+    }
+}

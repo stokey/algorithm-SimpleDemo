@@ -6,6 +6,10 @@ package com.stokey.algorithmdemo.Sword2Offer;
 
 public class D28StringPermutation {
 
+    public static void main(String[] args) {
+        D28StringPermutation.permutation("abc");
+    }
+
     /**
      * 字符串排列组合问题
      * @param str
@@ -17,11 +21,11 @@ public class D28StringPermutation {
         char[] input = str.toCharArray();
         char[] input2 = input.clone();
         StringBuilder output = new StringBuilder(input.length);
-        combination(input, input.length, output, 0);
+//        combination(input, input.length, output, 0);
 
-        System.out.println("====================================");
-
-        combination(str);
+//        System.out.println("====================================");
+//
+//        combination(str);
 
         System.out.println("====================================");
 
@@ -38,15 +42,11 @@ public class D28StringPermutation {
      * @param begin
      */
     private static void combination(char[] input, int length, StringBuilder output, int begin) {
-        if (begin == length) {
-            return;
-        } else {
-            for (int i = begin; i < length; i++) {
-                output.append(input[i]);
-                System.out.println(output.toString() + " ");
-                combination(input, length, output, i + 1);
-                output.deleteCharAt(output.length() - 1);
-            }
+        for (int i = begin; i < length; i++) {
+            output.append(input[i]);
+            System.out.println(output.toString() + " ");
+            combination(input, length, output, i + 1);
+            output.deleteCharAt(output.length() - 1);
         }
     }
 
@@ -60,20 +60,19 @@ public class D28StringPermutation {
      * @param str
      */
     private static void combination(String str) {
-        if (str.isEmpty()) {
+        if (str == null || str.length() <= 0) {
             return;
-        } else {
-            char[] inputs = str.toCharArray();
-            int length = inputs.length;
-            int n = 1 << length;//(2^length)
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < length; j++) {
-                    if ((i & (1 << j)) != 0) {
-                        System.out.print(inputs[j]);
-                    }
+        }
+        char[] inputs = str.toCharArray();
+        int length = inputs.length;
+        int n = 1 << length;//(2^length)
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < length; j++) {
+                if ((i & (1 << j)) != 0) {
+                    System.out.print(inputs[j]);
                 }
-                System.out.println();
             }
+            System.out.println();
         }
     }
 
@@ -86,26 +85,25 @@ public class D28StringPermutation {
      * @param start
      */
     private static void combinationStr(char[] input, int start) {
-        if (input == null || input.length <= 0 || start < 0 || start >= input.length) {
+        if (input == null || start < 0 || start >= input.length) {
             return;
         }
 
-        if (start >= input.length) {
-            return;
-        } else if (start == input.length - 1) {
+        if (start == input.length - 1) {
             System.out.println(String.valueOf(input));
         } else {
             for (int j = start; j < input.length; j++) {
-                swap(input, j, start); // 交换
+                // 交换 当前遍历字符与后面字符进行交换
+                swap(input, j, start);
                 combinationStr(input, start + 1);
-                swap(input, j, start); // 恢复
+                // 恢复
+                swap(input, j, start);
             }
         }
     }
 
     private static void swap(char[] input, int i, int j) {
-        if (input == null || input.length <= 0 ||
-                input.length <= i || input.length <= j || i < 0 || j < 0) {
+        if (input == null || input.length <= i || input.length <= j || i < 0 || j < 0) {
             return;
         }
         char temp = input[j];

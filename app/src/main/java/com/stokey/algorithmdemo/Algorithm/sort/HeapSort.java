@@ -1,7 +1,7 @@
 package com.stokey.algorithmdemo.Algorithm.sort;
 
 import com.stokey.algorithmdemo.Algorithm.basic.ISort;
-import com.stokey.algorithmdemo.Algorithm.modal.MaxHeap;
+import com.stokey.algorithmdemo.Algorithm.model.MaxHeap;
 import com.stokey.algorithmdemo.Algorithm.util.Utils;
 
 /**
