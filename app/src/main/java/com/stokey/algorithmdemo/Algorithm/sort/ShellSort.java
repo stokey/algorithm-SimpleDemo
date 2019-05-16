@@ -24,7 +24,6 @@ public class ShellSort implements ISort {
             }
             gap /= 2;
         }
-
     }
 
     @Override

@@ -14,7 +14,7 @@ public class BinarySearch implements ISearch<Integer> {
         // TODO: confirm the input array is sorted
         int left = 0, right = input.length - 1, mid = 0;
         while (left <= right) {
-            mid = left + (right - left / 2);//避免内存溢出
+            mid = left + (right - left)/ 2;//避免内存溢出
             if (input[mid].compareTo(target) == 0) {
                 return mid;
             } else if (input[mid].compareTo(target) > 0) {
@@ -31,7 +31,7 @@ public class BinarySearch implements ISearch<Integer> {
         // TODO: confirm the input array is sorted
         int left = 0, right = input.length - 1, mid = 0;
         while (left <= right) {
-            mid = left + (right - left / 2);//避免内存溢出
+            mid = left + (right - left) / 2;//避免内存溢出
             if (input[mid].compareTo(target) == 0) {
                 return input[mid];
             } else if (input[mid].compareTo(target) > 0) {
